@@ -1,4 +1,8 @@
-let app = require('express')()
+let exs = require('express')
+
+let app = exs()
+
+app.use(exs)
 
 app.set('view engine', 'ejs')
 
