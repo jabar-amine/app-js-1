@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Index</title>
-    <link rel="stylesheet" href="/semantic/semantic.min.css">
-</head>
-<body>
-    <h2>this is the msg contain</h2>
-    <p><%= msg%></p>
-</body>
-</html>
+<% include header %>
+<h2>this is the msg contain</h2>
+<p><%= msg%></p>
+<form action="/" method="POST" class="ui form">
+    <div class="field">
+        <label for="message">Message</label>
+        <textarea name="message" id="message"></textarea>
+    </div>
+    <button type="submit" class="ui blue labeled submit icon button">
+        <i class="icon edit"></i>Envoyer
+    </button>
+</form>
+<% include footer %>
