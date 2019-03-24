@@ -1,6 +1,16 @@
 <% include header %>
 <h2>this is the msg contain</h2>
-<p><%= msg%></p>
+<% if(locals.msg){ %>
+    <% if(locals.msg === 'no'){ %>
+    <div class="ui negative message">
+        <%= msg %>
+    </div>
+    <% }elsse{ %>
+    <div class="ui positive message">
+        <%= msg %>
+    </div>
+    <% } %>
+<% } %>
 <form action="/" method="POST" class="ui form">
     <div class="field">
         <label for="message">Message</label>
