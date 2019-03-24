@@ -1,15 +1,9 @@
 <% include header %>
 <h2>this is the msg contain</h2>
-<% if(locals.msg){ %>
-    <% if(locals.msg === 'no'){ %>
+<% if(locals.flash && locals.flash.error){ %>
     <div class="ui negative message">
-        <%= msg %>
+        <%= flash.error %>
     </div>
-    <% }elsse{ %>
-    <div class="ui positive message">
-        <%= msg %>
-    </div>
-    <% } %>
 <% } %>
 <form action="/" method="POST" class="ui form">
     <div class="field">

@@ -1,8 +1,10 @@
 let express = require('express')
 
+let app = express()
+
 let bodyParser = require('body-parser')
 
-let app = express()
+let session = require('express-session')
 
 
 // Template
@@ -18,21 +20,44 @@ app.use(bodyParser.urlencoded({ extended: false }))
  
 app.use(bodyParser.json())
 
+app.use(session({
+    secret: 'codesecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}))
+
+app.use(require('./midlleware/flash'))
+
 
 // Routes
 
 app.get('/', (request, response) =>{
-    //response.send('Hi Everyone')
-    response.render('pages/index',{msg: 'Hi Everyone'})
+
+    response.render('pages/index')
+
 })
 
 app.post('/', (request, response) =>{
-    if(request.body.message === undefined || request.body.message === ''){
-        response.render('pages/index',{msg: 'no'}) 
-    }else{
-        response.render('pages/index',{msg: 'yes'}) 
+
+    if (request.body.message === undefined || request.body.message === ''){
+
+        request.flash('error', 'No message sent') 
+
+    } else {
+
+        let Country = require('./models/Country')
+        
+        Country.create(request.body.message, function(){
+
+            request.flash('success', 'message is sent') 
+
+        })
+
     }
-    console.log(request.body)
+
+    response.redirect('/')
+    
 })
 
 app.listen(8080)
