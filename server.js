@@ -44,6 +44,8 @@ app.post('/', (request, response) =>{
 
         request.flash('error', 'No message sent') 
 
+        response.redirect('/')
+
     } else {
 
         let Country = require('./models/Country')
@@ -52,11 +54,13 @@ app.post('/', (request, response) =>{
 
             request.flash('success', 'message is sent') 
 
+            response.redirect('/')
+
         })
 
     }
 
-    response.redirect('/')
+    
     
 })
 

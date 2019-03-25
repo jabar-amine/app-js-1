@@ -5,6 +5,11 @@
         <%= flash.error %>
     </div>
 <% } %>
+<% if(locals.flash && locals.flash.success){ %>
+    <div class="ui positive message">
+        <%= flash.success %>
+    </div>
+<% } %>
 <form action="/" method="POST" class="ui form">
     <div class="field">
         <label for="message">Message</label>

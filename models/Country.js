@@ -2,7 +2,7 @@ let connection = require('../config/db')
 
 class Country{
 
-    static create(name){
+    static create(name, cb){
 
         connection.query('INSERT INTO country set uid = ?, code = ?, name = ?, currency = ?',['UIDV','COD',name,'CUR'],(err, result)=>{
 
