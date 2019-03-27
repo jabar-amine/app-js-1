@@ -6,6 +6,8 @@ let bodyParser = require('body-parser')
 
 let session = require('express-session')
 
+let passport = require('passport')
+
 
 // Template
 
@@ -31,6 +33,10 @@ app.use(require('./midlleware/flash'))
 
 
 // Routes
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login' }));
 
 app.get('/', (request, response) =>{
 
