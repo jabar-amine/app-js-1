@@ -1,0 +1,22 @@
+<% include header %>
+
+<div class="ui comments">
+
+    <h3 class="ui dividing header">Country</h3>
+
+        
+            <div class="comment">
+                <div class="content">
+                        <%= country.name %>  
+                    <div class="metadata">
+                        <div class="date">
+                            <%= country.created_at.fromNow() %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <a href="/" class="header item">Back</a>
+
+</div>
+<% include footer %>

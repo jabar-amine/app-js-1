@@ -13,7 +13,6 @@ let passport = require('passport')
 
 app.set('view engine', 'ejs')
 
-
 // Middleware
 
 app.use('/assets', express.static('public'))
@@ -30,7 +29,6 @@ app.use(session({
 }))
 
 app.use(require('./midlleware/flash'))
-
 
 // Routes
 
