@@ -62,6 +62,6 @@ moment.locale('fr', {
     }
 })
 
-moment.locale('fr')
+moment.locale('en')
 
 module.exports = moment
