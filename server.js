@@ -34,7 +34,13 @@ app.use(require('./midlleware/flash'))
 
 app.get('/', (request, response) =>{
 
-    response.render('pages/index')
+    let Country = require('./models/Country')
+
+    Country.all(function(items){
+
+        response.render('pages/index',{countries: items})
+
+    })
 
 })
 
@@ -59,9 +65,19 @@ app.post('/', (request, response) =>{
         })
 
     }
+    
+})
 
-    
-    
+app.get('/country/:id', (request, response) =>{
+
+    let Country = require('./models/Country')
+
+    Country.find(request.params.id, function(result){
+
+        response.render('pages/show',{country: result})
+
+    })
+
 })
 
 app.listen(8080)

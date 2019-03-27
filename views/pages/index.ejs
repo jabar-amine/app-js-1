@@ -19,4 +19,25 @@
         <i class="icon edit"></i>Envoyer
     </button>
 </form>
+
+<div class="ui comments">
+
+    <h3 class="ui dividing header">Countries</h3>
+
+        <% for (i of countries) { %>
+            <div class="comment">
+                <div class="content">
+                    <a href="/country/<%= i.id %>">
+                        <%= i.name %>
+                    </a>                    
+                    <div class="metadata">
+                        <div class="date">
+                            <%= i.created_at.fromNow() %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+</div>
 <% include footer %>
