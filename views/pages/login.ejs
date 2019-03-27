@@ -1,22 +1,27 @@
 <% include header %>
 
-<div class="ui comments">
-
-    <h3 class="ui dividing header">Country</h3>
-
-        
-            <div class="comment">
-                <div class="content">
-                        <%= country.name %>  
-                    <div class="metadata">
-                        <div class="date">
-                            <%= country.created_at.fromNow() %>
-                        </div>
-                    </div>
-                </div>
+      <form class="ui form" action="/login" method="post">
+            <div class="required field">
+              <div class="ui icon input">
+                <input type="text" name="username" placeholder="Username">
+                <i class="user icon"></i>
+              </div>
             </div>
-            <br>
-            <a href="/" class="header item">Back</a>
-
-</div>
+            <div class="required field">
+              <div class="ui icon input">
+                <input type="password" name="password" placeholder="Password">
+                <i class="lock icon"></i>
+              </div>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui grid">
+              <div class="center aligned column">
+                <div class="ui buttons">
+                  <button class="ui yellow button">Register</button>
+                  <div class="or"></div>
+                  <button type="submit" class="ui teal submit button">Sign In</button>
+                </div>
+              </div>
+            </div>
+          </form>
 <% include footer %>

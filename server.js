@@ -8,6 +8,26 @@ let session = require('express-session')
 
 let passport = require('passport')
 
+let LocalStrategy = require('passport-local').Strategy;
+
+let Country = require('./models/Country')
+
+let Person = require('./models/Person')
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        Person.findOne({ username: username }, function(err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+        return done(null, user);
+      });
+    }
+  ));
 
 // Template
 
@@ -34,11 +54,17 @@ app.use(require('./midlleware/flash'))
 
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login' }));
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
+app.get('/login', (request, response) =>{
+
+    response.render('pages/login')
+
+})
 
 app.get('/', (request, response) =>{
-
-    let Country = require('./models/Country')
 
     Country.all(function(items){
 
@@ -57,8 +83,6 @@ app.post('/', (request, response) =>{
         response.redirect('/')
 
     } else {
-
-        let Country = require('./models/Country')
         
         Country.create(request.body.message, function(){
 
@@ -73,8 +97,6 @@ app.post('/', (request, response) =>{
 })
 
 app.get('/country/:id', (request, response) =>{
-
-    let Country = require('./models/Country')
 
     Country.find(request.params.id, function(result){
 
